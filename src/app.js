@@ -10,10 +10,10 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
-app.use(morgan('dev'));
-app.use(express.urlencoded({ extended: true }));
+app.use(cors());//para permitir solicitudes de diferentes orígenes
+app.use(express.json());//parcea el cuerpo de las solicitudes a formato JSON
+app.use(morgan('dev'));//para registrar las solicitudes HTTP en la consola
+app.use(express.urlencoded({ extended: true }));//para analizar el cuerpo de las solicitudes URL-encoded
 
 app.use("/api/user", usuarioRoutes);
 app.use("/api/recolection", recoleccionRoutes);

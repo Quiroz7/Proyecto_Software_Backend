@@ -12,11 +12,12 @@ export const registrarUsuario = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 export const loginUsuario = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Buscar usuario por email
+
     const usuario = await Users.findOne({ where: { email } });
     if (!usuario) {
       return res.status(404).json({ mensaje: "Usuario no encontrado" });
@@ -35,13 +36,14 @@ export const loginUsuario = async (req, res) => {
   }
 };
 
-// {  /api/user/createuser
-//     "id": 1,
-//     "nombre_usuario": "JuanD",
-//     "email": "juanQ@gmail.com",
-//     "documento": "103652314",
-//     "password": "logrando",
-//     "telefono": "5264512",
-//     "ciudad": "Medellin"
-// }
+export const listarUsuarios = async (req, res) => {
+  try {
+    const usuarios = await Users.findAll(); // Trae todos los usuarios
+    res.status(200).json(usuarios);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 
